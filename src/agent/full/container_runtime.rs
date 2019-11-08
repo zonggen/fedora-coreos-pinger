@@ -180,7 +180,7 @@ impl ContainerRT {
         std_out = String::from_utf8(output.stdout)?
             .trim()
             .trim_end_matches("\n")
-            .to_string();;
+            .to_string();
 
         let count: i32 = std_out.parse()?;
         Ok(cmp::max(0, count - 1))

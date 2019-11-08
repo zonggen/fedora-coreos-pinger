@@ -1,6 +1,6 @@
 [package]
 name = "fedora-coreos-pinger"
-version = "0.0.5-alpha.0"
+version = "0.0.5"
 authors = ["Robert Fairley <rfairley@redhat.com>"]
 edition = "2018"
 description = "Telemetry service for Fedora CoreOS"
@@ -26,7 +26,7 @@ serde_json = "1.0.40"
 slog-scope = "~4.1"
 tempfile = "3.1.0"
 toml = "^0.5.1"
-reqwest = "0.9.22"
+reqwest = "0.9.13"
 bincode = "1.2.0"
 nix = "0.15.0"
 

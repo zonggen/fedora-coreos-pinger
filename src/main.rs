@@ -68,7 +68,7 @@ fn main() -> Fallible<()> {
     match fork() {
         Ok(ForkResult::Parent { child, .. }) => {
             println!("New child has pid: {}", child);
-            return Ok(());
+            std::process::exit(0);
         }
         Ok(ForkResult::Child) => (),
         Err(_) => panic!("Fork failed in main()"),
@@ -115,7 +115,7 @@ fn main() -> Fallible<()> {
         // spawn thread for monitoring timestamp and sending report daily
         let daily_thread = thread::spawn(move || -> Fallible<()> {
             const DAILY_TIMESTAMP_FILE: &str = r#"/var/lib/fedora-coreos-pinger/timestamp_daily"#;
-            const SECS_PER_12_HOURS: Duration = Duration::from_secs(12 * 60 * 60);
+            const SECS_PER_12_HOURS: Duration = Duration::from_secs(15);
             loop {
                 let clock = util::Clock::read_timestamp(DAILY_TIMESTAMP_FILE)?;
                 if clock.if_need_update("daily")? {
@@ -134,7 +134,7 @@ fn main() -> Fallible<()> {
         let monthly_thread = thread::spawn(move || -> Fallible<()> {
             const MONTHLY_TIMESTAMP_FILE: &str =
                 r#"/var/lib/fedora-coreos-pinger/timestamp_monthly"#;
-            const SECS_PER_15_DAYS: Duration = Duration::from_secs(15 * 24 * 60 * 60);
+            const SECS_PER_15_DAYS: Duration = Duration::from_secs(30);
             loop {
                 let clock = util::Clock::read_timestamp(MONTHLY_TIMESTAMP_FILE)?;
                 if clock.if_need_update("monthly")? {

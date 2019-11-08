@@ -35,8 +35,8 @@ impl Clock {
     /// checks if the timestamp needs an update
     /// mode = 'daily' | 'monthly'
     pub(crate) fn if_need_update(&self, mode: &str) -> Fallible<bool> {
-        let secs_per_day = 24 * 60 * 60;
-        let secs_per_month = 31 * secs_per_day;
+        let secs_per_day = 30;
+        let secs_per_month = 60;
 
         let now = SystemTime::now();
         let elapsed_seconds = now.duration_since(self.timestamp)?.as_secs();

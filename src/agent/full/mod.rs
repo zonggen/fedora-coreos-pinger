@@ -27,7 +27,7 @@ impl IdentityFull {
         let network = network::get_network().unwrap_or(HashMap::new());
         let container_rt = container_runtime::ContainerRT::new();
         match platform.as_str() {
-            "metal" => {
+            "qemu" => {
                 let hw = hardware::HardwareJSON::new()?;
                 Ok(IdentityFull {
                     hardware: Some(hw),
