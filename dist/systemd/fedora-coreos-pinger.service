@@ -7,9 +7,9 @@ After=network-online.target
 
 [Service]
 DynamicUser=yes
-Type=forking
-StateDirectory=fedora-coreos-pinger
+Type=oneshot
 RemainAfterExit=yes
+StateDirectory=fedora-coreos-pinger
 ExecStart=/usr/libexec/fedora-coreos-pinger
 
 [Install]
